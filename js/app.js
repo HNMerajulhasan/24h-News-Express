@@ -109,4 +109,34 @@ const loadNewsDetails = async news_id =>{
  }
 }
 
+//Loading icon function
+const toggleSpinner = isLoading =>{
+  const loaderSection=document.getElementById('loader');
+  if(isLoading){
+    loaderSection.classList.remove('d-none');
+  } 
+  else{
+    loaderSection.classList.add('d-none');
+  }
+}
 
+
+
+
+const displayNewsDetails = newsdetails =>{
+ // console.log(newsdetails);
+  const {title, image_url, details,author} = newsdetails;
+ // console.log(title);
+  const detailsContainer = document.getElementById('modal-pop');
+  detailsContainer.innerHTML = `
+  <p>Author: ${author.name}</p>
+  <p>Publish_Date: ${author.published_date}</p>
+  <img class="img-fluid h-25" src="${author.img}">
+  <p>${details}</p>
+  `;
+  const newsLabel = document.getElementById('newsDetailsLabel');
+  newsLabel.innerText = title;
+}
+
+loadCategories();
+loadNews(08);

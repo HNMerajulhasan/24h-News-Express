@@ -95,3 +95,18 @@ const displayNews = (data, category_name) =>{
   //Stop or hide loader icon
 toggleSpinner(false);
 }
+
+const loadNewsDetails = async news_id =>{
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+  try{
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data[0]);
+    console.log(data.data[0]); 
+  }
+ catch(error){
+    console.log(error);
+ }
+}
+
+

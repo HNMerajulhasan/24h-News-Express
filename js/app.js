@@ -23,3 +23,15 @@ const displayCategories = (data) =>{
      categoriesContainer.appendChild(categorieDiv);
   })
 }
+
+const loadNews = async (category_id, category_name) =>{
+  const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
+  try{
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNews(data.data);
+  }
+  catch(error){
+    console.log(error);
+  }
+}

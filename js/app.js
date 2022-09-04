@@ -18,7 +18,7 @@ const displayCategories = (data) =>{
     // console.log(category_id);
      const categorieDiv = document.createElement('div');
      categorieDiv.innerHTML = `
-     <button class="btn btn-outline-primary" onclick="loadNews(${category_id}), toggleSpinner(true)"><h5>${category_name}</h5></button>
+     <button class="btn btn-outline-primary" onclick=" toggleSpinner(true),loadNews(${category_id})"><h5>${category_name}</h5></button>
      `;
      categoriesContainer.appendChild(categorieDiv);
   })
@@ -49,8 +49,22 @@ const displayNews = (data, category_name) =>{
  else{
      noNews.classList.add('d-none');
  }
+
+
   data.forEach(news =>{
+
       const {title, thumbnail_url, details, total_view, author, _id} = news;
+      
+     //Sorting total_view
+     const points = [total_view];
+
+     points.sort(function(a, b){
+     return b - a
+     });
+     const max=Math.max(...points);
+     console.log(max);
+     //
+
       const newsDiv = document.createElement('div');
       newsDiv.innerHTML = `
       <div class="card mb-3 p-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 75rem;">
